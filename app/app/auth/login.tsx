@@ -68,11 +68,7 @@ export default function LoginScreen() {
     setIsLoading(true);
     try {
 
-<<<<<<< HEAD
-      const response = await fetch('http://192.168.29.144:3000/api/auth/login', {
-=======
-      const response = await fetch('http://192.168.1.3:3000/api/auth/login', {
->>>>>>> back
+      const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

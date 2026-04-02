@@ -58,8 +58,8 @@ export default function RegisterScreen() {
       Alert.alert('Error', 'Please enter a valid email address');
       return false;
     }
-    if (formData.password.length < 6) {
-      Alert.alert('Error', 'Password must be at least 6 characters long');
+    if (formData.password.length < 5) {
+      Alert.alert('Error', 'Password must be at least 5 characters long');
       return false;
     }
     if (formData.password !== formData.confirmPassword) {
@@ -93,11 +93,7 @@ export default function RegisterScreen() {
     try {
       console.log("Sending request...");
       // TODO: Replace with actual API endpoint
-<<<<<<< HEAD
-      const response = await fetch('http://192.168.29.144:3000/api/auth/register', {
-=======
-      const response = await fetch('http://192.168.1.3:3000/api/auth/register', {
->>>>>>> back
+      const response = await fetch('http://localhost:5000/api/auth/register', {
       //const response = await fetch('YOUR_BACKEND_URL/api/auth/register', {
         method: 'POST',
         headers: {

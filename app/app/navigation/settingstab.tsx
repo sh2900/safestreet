@@ -14,10 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Text, View } from '../../components/Themed';
-import  {Colors}  from '../../constants/Colors';
-
-
-//import { useColorScheme } from '../../components/useColorScheme';
+import { Colors } from '../../constants/Colors';
 import { useAuth } from '../../context/AuthContext';
 
 interface AppSettings {
@@ -145,23 +142,6 @@ export default function SettingsTabScreen() {
 
     setIsDeleting(true);
     try {
-      // TODO: Replace with actual API call to delete account
-      // const response = await fetch('YOUR_BACKEND_URL/api/user/delete', {
-      //   method: 'DELETE',
-      //   headers: {
-      //     'Authorization': `Bearer ${state.token}`,
-      //     'Content-Type': 'application/json',
-      //   },
-      // });
-      
-      // if (response.ok) {
-      //   // Account deleted successfully on server
-      //   await AsyncStorage.clear();
-      //   router.replace('/auth/register');
-      // } else {
-      //   throw new Error('Failed to delete account');
-      // }
-
       // Simulate API call for demo
       await new Promise(resolve => setTimeout(resolve, 2000));
       
@@ -232,22 +212,16 @@ export default function SettingsTabScreen() {
     );
   };
 
-<<<<<<< HEAD
+  const contactSupport = () => {
+    Linking.openURL('mailto:safestreetps@gmail.com?subject=Safe Street App Support');
+  };
+
   const openPrivacyPolicy = () => {
     Linking.openURL('https://example.com/privacy-policy');
   };
 
   const openTermsOfService = () => {
     Linking.openURL('https://example.com/terms-of-service');
-  };
-
-  const contactSupport = () => {
-    Linking.openURL('mailto:support@safestreet.com?subject=Safe Street App Support');
-=======
- 
-  const contactSupport = () => {
-    Linking.openURL('mailto:safestreetps@gmail.com?subject=Safe Street App Support');
->>>>>>> back
   };
 
   const renderSettingItem = (
@@ -275,7 +249,7 @@ export default function SettingsTabScreen() {
   );
 
   const renderInfoItem = (label: string, value: string, iconName: string) => (
-    <View style={[styles.infoItem, { backgroundColor: theme.secondaryBackground }]}>
+    <View style={[styles.infoItem, { backgroundColor: theme.cardBackground }]}>
       <Ionicons name={iconName as any} size={18} color={Colors.primary} style={styles.infoIcon} />
       <View style={styles.infoText}>
         <Text style={[styles.infoLabel, { color: theme.placeholderText }]}>{label}</Text>
@@ -326,7 +300,7 @@ export default function SettingsTabScreen() {
           
           <TextInput
             style={[styles.deleteModalInput, { 
-              backgroundColor: theme.secondaryBackground, 
+              backgroundColor: theme.background, 
               color: theme.text,
               borderColor: theme.borderColor 
             }]}
@@ -340,7 +314,7 @@ export default function SettingsTabScreen() {
           
           <View style={styles.deleteModalButtons}>
             <TouchableOpacity
-              style={[styles.deleteModalButton, styles.cancelButton, { backgroundColor: theme.secondaryBackground }]}
+              style={[styles.deleteModalButton, styles.cancelButton, { backgroundColor: theme.background }]}
               onPress={() => {
                 setShowDeleteModal(false);
                 setDeleteConfirmText('');
@@ -387,7 +361,7 @@ export default function SettingsTabScreen() {
               <View style={styles.profileInfo}>
                 <View style={[styles.profileAvatar, { backgroundColor: Colors.primary }]}>
                   <Text style={styles.profileAvatarText}>
-                    {state.user.fullName.charAt(0).toUpperCase()}
+                    {state.user.fullName?.charAt(0).toUpperCase()}
                   </Text>
                 </View>
                 <View style={styles.profileDetails}>
@@ -404,19 +378,14 @@ export default function SettingsTabScreen() {
                   <Text style={[styles.signOutText, { color: Colors.error }]}>Sign Out</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.deleteAccountButton} onPress={handleDeleteAccount}>
-                  <Ionicons name="trash-outline" size={20} color={Colors.error} />
-<<<<<<< HEAD
-                  <Text style={[styles.deleteAccountText, { color: Colors.error }]}>Delete Account</Text>
-=======
+                  <Ionicons name="trash-outline" size={20} color={"#FFFFFF"} />
                   <Text style={styles.deleteAccountText}>Delete Account</Text>
->>>>>>> back
                 </TouchableOpacity>
               </View>
             </View>
           </View>
         )}
 
-<<<<<<< HEAD
         {/* Theme Info */}
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: Colors.primary }]}>🎨 Theme</Text>
@@ -472,8 +441,6 @@ export default function SettingsTabScreen() {
             'cellular'
           )}
         </View>
-=======
->>>>>>> back
 
         {/* App Information */}
         <View style={styles.section}>
@@ -482,7 +449,6 @@ export default function SettingsTabScreen() {
           {renderInfoItem('Version', appInfo.version, 'information-circle')}
           {renderInfoItem('Build Number', appInfo.buildNumber, 'build')}
           {renderInfoItem('Total Uploads', appInfo.totalUploads.toString(), 'cloud-upload')}
-<<<<<<< HEAD
           {renderInfoItem('Storage Used', appInfo.storageUsed, 'server')}
         </View>
 
@@ -501,19 +467,10 @@ export default function SettingsTabScreen() {
           {renderActionItem('Contact Support', contactSupport, 'mail')}
           {renderActionItem('Privacy Policy', openPrivacyPolicy, 'shield-checkmark')}
           {renderActionItem('Terms of Service', openTermsOfService, 'document-text')}
-=======
-        </View>
-
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: Colors.primary }]}>🛠️ Support & Legal</Text>
-          {renderActionItem('Clear App Data', clearAppData, 'trash', Colors.error)}
-          {renderActionItem('Contact Suport', contactSupport, 'mail')}
-
->>>>>>> back
         </View>
 
         {/* About */}
-        <View style={[styles.aboutSection, { backgroundColor: theme.secondaryBackground }]}>
+        <View style={[styles.aboutSection, { backgroundColor: theme.cardBackground }]}>
           <Text style={[styles.aboutTitle, { color: Colors.primary }]}>About Safe Street</Text>
           <Text style={[styles.aboutText, { color: theme.placeholderText }]}>
             Safe Street helps communities report and track road damage using AI-powered analysis. 
@@ -820,20 +777,20 @@ const styles = StyleSheet.create({
   },
   deleteModalButton: {
     flex: 1,
-    paddingVertical: 14,
-    borderRadius: 8,
+    paddingVertical: 12,
     alignItems: 'center',
+    borderRadius: 8,
   },
   cancelButton: {
     borderWidth: 1,
-    borderColor: Colors.primary,
+    borderColor: '#ccc',
   },
   cancelButtonText: {
     fontSize: 16,
     fontWeight: '600',
   },
   deleteButton: {
-    backgroundColor: Colors.error,
+    // backgroundColor: Colors.error
   },
   deleteButtonText: {
     color: '#FFFFFF',

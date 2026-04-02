@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 /**
  * Learn more about Light and Dark modes:
  * https://docs.expo.io/guides/color-schemes/
  */
-=======
->>>>>>> back
 
 import { Text as DefaultText, View as DefaultView } from 'react-native';
 

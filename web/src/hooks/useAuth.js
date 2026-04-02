@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   /* LOGIN */
   const login = async (email, password) => {
     try {
-      const res = await fetch("http://localhost:3000/auth/admin-login", {
+      const res = await fetch("http://localhost:5000/auth/admin-login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

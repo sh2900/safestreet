@@ -26,7 +26,7 @@ const Register = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:3000/auth/admin-register", {
+      const res = await fetch("http://localhost:5000/auth/admin-register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fullName, email, password }),

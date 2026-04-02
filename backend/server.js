@@ -30,12 +30,12 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/reports", reportRoutes);
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("public/uploads"));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
 app.use("/auth", adminAuthRoutes);
-app.use("/api/reports", require("./routes/reportRoutes"));
+app.use("/api/reports", require("./routes/reports"));
 
 console.log("✅ Auth routes mounted");
 
@@ -57,7 +57,7 @@ const SEVERITY_LABELS = ["Low", "Medium", "High"];
 
 /* ===================== MULTER ===================== */
 const memoryUpload = multer({ storage: multer.memoryStorage() });
-const diskUpload = multer({ dest: "uploads/" });
+const diskUpload = multer({ dest: "public/uploads/" });
 
 /* ===================== TEST ROUTE ===================== */
 app.get("/", (req, res) => {
@@ -84,7 +84,7 @@ app.post(
 
     try {
       const imageResponse = await axios.post(
-        "http://localhost:5000/analyze/annotate",
+        "http://localhost:5001/analyze/annotate",
         form1,
         {
           headers: form1.getHeaders(),
@@ -108,7 +108,7 @@ app.post(
 
         try {
           const jsonResponse = await axios.post(
-            "http://localhost:5000/analyze/json",
+            "http://localhost:5001/analyze/json",
             form2,
             {
               headers: form2.getHeaders(),
@@ -116,7 +116,8 @@ app.post(
             }
           );
 
-          const { type, severity, bbox, summary } = jsonResponse.data;
+          const { type, severity, bbox_pixels, summary } = jsonResponse.data;
+          const bbox = bbox_pixels;
 
           const predictedClass = CLASS_LABELS.indexOf(type);
           const severityIndex = SEVERITY_LABELS.indexOf(severity);
