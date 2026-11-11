@@ -28,6 +28,6 @@ Safe Street is a full-stack web and mobile application designed to identify and 
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/Thrinadh-25/safestreet.git
+git clone https://github.com/sh900/safestreet.git
 cd safestreet
 ```
